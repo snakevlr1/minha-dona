@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -71,7 +70,7 @@
     .heart {
       position: absolute;
       bottom: 30px;
-      left: 30px; /* <-- Alterado de right para left */
+      left: 30px;
       width: 60px;
       height: 60px;
       animation: pulse 1.5s infinite, heartGlow 2s ease-in-out infinite alternate;
@@ -150,9 +149,9 @@
       width: 2px;
       height: 100px;
       background: linear-gradient(180deg, white, rgba(255, 255, 255, 0));
-      opacity: 0.8;
+      opacity: 1; /* aumentei para 1 */
       transform: rotate(45deg);
-      filter: blur(1px);
+      filter: blur(0.5px); /* reduzi o blur */
       animation: shoot 3s ease-in-out forwards;
       z-index: 0;
       cursor: pointer;
@@ -196,7 +195,7 @@
   </style>
 </head>
 <body>
-  <audio id="background-audio" autoplay loop>
+  <audio id="background-audio" loop>
     <source src="./imagens/Moonlight.mp3" type="audio/mpeg" />
     Seu navegador não suporta áudio.
   </audio>
@@ -237,6 +236,15 @@
     volumeControl.addEventListener("input", (event) => {
       audio.volume = event.target.value;
     });
+
+    // Tocar áudio após o primeiro clique para evitar bloqueios de autoplay
+    document.body.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().catch((e) => {
+          console.log("Erro ao tentar tocar o áudio:", e);
+        });
+      }
+    }, { once: true });
 
     function createShootingStar() {
       const star = document.createElement("div");
