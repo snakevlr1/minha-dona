@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keren sz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('./imagens/noite.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      color: white;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://i.imgur.com/0XfNQ0B.png') repeat;
+      animation: twinkle 5s linear infinite;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: 100px 100px; }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      background-color: rgba(250, 158, 253, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    h1, p {
+      text-shadow: 0 0 10px #fff;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #ffbbf7, 0 0 10px #ffbbf7;
+      }
+      to {
+        text-shadow: 0 0 20px #ffffff, 0 0 30px #ffa8ff;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart {
+      position: absolute;
+      bottom: 30px;
+      left: 30px; /* <-- Alterado de right para left */
+      width: 60px;
+      height: 60px;
+      animation: pulse 1.5s infinite, heartGlow 2s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    .heart svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes heartGlow {
+      from { filter: drop-shadow(0 0 5px red); }
+      to { filter: drop-shadow(0 0 15px #ff5c5c); }
+    }
+
+    .flower {
+      position: absolute;
+      bottom: 20px;
+      right: 100px;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, pink 60%, transparent 61%);
+      border-radius: 50%;
+      box-shadow:
+        -20px -20px 0 pink,
+        20px -20px 0 pink,
+        -20px 20px 0 pink,
+        20px 20px 0 pink;
+      animation: grow 3s ease-in-out forwards;
+      z-index: 1;
+    }
+
+    @keyframes grow {
+      0% { transform: scale(0); }
+      100% { transform: scale(1); }
+    }
+
+    .volume-control {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      z-index: 1;
+    }
+
+    .volume-control input {
+      width: 100px;
+    }
+
+    .music-link {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      animation: fadeIn 2s;
+      z-index: 1;
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(180deg, white, rgba(255, 255, 255, 0));
+      opacity: 0.8;
+      transform: rotate(45deg);
+      filter: blur(1px);
+      animation: shoot 3s ease-in-out forwards;
+      z-index: 0;
+      cursor: pointer;
+    }
+
+    @keyframes shoot {
+      0% {
+        top: -100px;
+        left: calc(100% * var(--start));
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        left: calc(100% * var(--end));
+        opacity: 0;
+      }
+    }
+
+    .click-heart {
+      position: absolute;
+      font-size: 24px;
+      animation: floatHeart 2s ease-out forwards;
+      color: red;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -150%) scale(2);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="background-audio" autoplay loop>
+    <source src="./imagens/Moonlight.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <main>
+    <h1>US</h1>
+    <p>Você é incrível como as artes de Van Gogh.</p>
+    <p>Assim como a noite estrelada, você possui estrelas em seu olhar.</p>
+    <p>Você é admirável.</p>
+    <p>Poder estar contigo melhora todos os momentos.</p>
+  </main>
+
+  <div class="heart">
+    <svg viewBox="0 0 32 29.6">
+      <path
+        d="M23.6,0c-3.4,0-6.4,2.2-7.6,5.3C14.8,2.2,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,4.3,3.4,7.8,8.5,12.3
+        c2.8,2.5,6.2,5.1,7.5,6.3c1.3-1.2,4.7-3.8,7.5-6.3C28.6,16.2,32,12.7,32,8.4C32,3.8,28.2,0,23.6,0z"
+        fill="red"
+      />
+    </svg>
+  </div>
+
+  <div class="flower"></div>
+
+  <div class="volume-control">
+    <label for="volume">Volume:</label>
+    <input id="volume" type="range" min="0" max="1" step="0.1" value="1" />
+  </div>
+
+  <a href="https://www.youtube.com/watch?v=vUNK5rIssww" target="_blank" class="music-link">
+    Moonlight
+  </a>
+
+  <script>
+    const audio = document.getElementById("background-audio");
+    const volumeControl = document.getElementById("volume");
+
+    volumeControl.addEventListener("input", (event) => {
+      audio.volume = event.target.value;
+    });
+
+    function createShootingStar() {
+      const star = document.createElement("div");
+      star.classList.add("shooting-star");
+      star.style.setProperty('--start', Math.random());
+      star.style.setProperty('--end', Math.random());
+      star.addEventListener('click', (e) => {
+        createClickHeart(e.clientX, e.clientY);
+      });
+      document.body.appendChild(star);
+      setTimeout(() => {
+        star.remove();
+      }, 3000);
+    }
+
+    function createClickHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.classList.add("click-heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+    }
+
+    setInterval(() => {
+      createShootingStar();
+    }, Math.random() * 2000 + 2000);
+  </script>
+</body>
+</html>
